@@ -63,4 +63,3 @@ ID                  NAME                             TAG                 DESCRIP
 * [plugin push](plugin_push.md)
 * [plugin rm](plugin_rm.md)
 * [plugin set](plugin_set.md)
-* [plugin upgrade](plugin_upgrade.md)

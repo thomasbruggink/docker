@@ -53,4 +53,3 @@ tiborvass/sample-volume-plugin
 * [plugin ls](plugin_ls.md)
 * [plugin push](plugin_push.md)
 * [plugin set](plugin_set.md)
-* [plugin upgrade](plugin_upgrade.md)

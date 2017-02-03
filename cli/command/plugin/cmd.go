@@ -25,7 +25,6 @@ func NewPluginCommand(dockerCli *command.DockerCli) *cobra.Command {
 		newSetCommand(dockerCli),
 		newPushCommand(dockerCli),
 		newCreateCommand(dockerCli),
-		newUpgradeCommand(dockerCli),
 	)
 	return cmd
 }

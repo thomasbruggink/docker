@@ -5,6 +5,7 @@ package libnetwork
 import (
 	"runtime"
 	"time"
+	"fmt"
 
 	"github.com/Microsoft/hcsshim"
 	"github.com/Sirupsen/logrus"
@@ -30,19 +31,13 @@ func executeInCompartment(compartmentID uint32, x func()) {
 func (n *network) startResolver() {
 	n.resolverOnce.Do(func() {
 		logrus.Debugf("Launching DNS server for network", n.Name())
-		options := n.Info().DriverOptions()
-		hnsid := options[windows.HNSID]
 
-		if hnsid == "" {
-			return
-		}
+		hnsallnetworks, err := hcsshim.HNSListNetworkRequest("GET", "", "")
+		fmt.Println(windows.HNSID)
+		hnsid := hnsallnetworks[0].Id
+		fmt.Println(hnsid)
 
-		hnsresponse, err := hcsshim.HNSNetworkRequest("GET", hnsid, "")
-		if err != nil {
-			logrus.Errorf("Resolver Setup/Start failed for container %s, %q", n.Name(), err)
-			return
-		}
-
+		hnsresponse := hnsallnetworks[0];
 		for _, subnet := range hnsresponse.Subnets {
 			if subnet.GatewayAddress != "" {
 				for i := 0; i < 3; i++ {

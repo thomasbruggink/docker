@@ -83,7 +83,7 @@
 #
 #
 # 6. (Optional) Remove the interim container holding the built executable binaries:
-#
+#get-ser
 #    >>    docker rm binaries
 #
 #

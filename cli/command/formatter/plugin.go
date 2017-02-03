@@ -85,8 +85,3 @@ func (c *pluginContext) Enabled() bool {
 	c.AddHeader(enabledHeader)
 	return c.p.Enabled
 }
-
-func (c *pluginContext) PluginReference() string {
-	c.AddHeader(imageHeader)
-	return c.p.PluginReference
-}

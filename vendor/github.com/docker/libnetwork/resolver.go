@@ -236,6 +236,7 @@ func (r *resolver) handleIPQuery(name string, query *dns.Msg, ipType int) (*dns.
 		return resp, nil
 	}
 	if addr == nil {
+		logrus.Debugf("Looup failed for %s", name)
 		return nil, nil
 	}
 

@@ -1626,6 +1626,18 @@ func (n *network) ResolveName(req string, ipType int) ([]net.IP, bool) {
 	sr, ok := c.svcRecords[n.ID()]
 
 	if !ok {
+		result,err := net.LookupHost(req)
+		if  err != nil {
+			logrus.Debugln("DNS lookup failed for %s", req)
+			return nil, false
+		}
+		if len(result) > 0 {
+			ipresult := make([]net.IP, len(result))
+			for index, ip := range result {
+				ipresult[index] = net.ParseIP(ip)
+			}
+			return ipresult, true
+		}
 		return nil, false
 	}
 
